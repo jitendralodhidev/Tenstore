@@ -1,0 +1,1 @@
+this output you are observing is from static folder in shop
