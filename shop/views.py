@@ -74,12 +74,12 @@ def tracker(request):
                 updates = []
                 for item in update:
                     updates.append({'text': item.update_desc, 'time': item.timestamp})
-                    response = json.dumps([updates, order[0].items_json], default=str)
+                    response = json.dumps({"status":"success", "updates": updates, "itemsJson": order[0].items_json}, default=str)
                 return HttpResponse(response)
             else:
-                return HttpResponse('{}')
+                return HttpResponse('{"status":"noitem"}')
         except Exception as e:
-            return HttpResponse('{}')
+            return HttpResponse('{"status":"error"}')
 
     return render(request, 'shop/tracker.html')
 
@@ -88,7 +88,7 @@ def productView(request, myid):
 
     # Fetch the product using the id
     product = Product.objects.filter(id=myid)
-    return render(request, 'productview.html', {'product':product[0]})
+    return render(request, 'shop/prodView.html', {'product':product[0]})
 
 
 def checkout(request):
@@ -110,6 +110,7 @@ def checkout(request):
         thank = True
         id = order.order_id
         return render(request, 'shop/checkout.html', {'thank':thank, 'id': id})
+
         # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
 

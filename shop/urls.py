@@ -1,14 +1,14 @@
-
 from django.urls import path
-from.import views
+from . import views
 
 urlpatterns = [
+    path("", views.index, name="ShopHome"),
+    path("about/", views.about, name="AboutUs"),
+    path("contact/", views.contact, name="ContactUs"),
+    path("tracker/", views.tracker, name="TrackingStatus"),
+    path("search/", views.search, name="Search"),
+    path("products/<int:myid>", views.productView, name="ProductView"),
+    path("checkout/", views.checkout, name="Checkout"),
+    path("handlerequest/", views.handlerequest, name="HandleRequest"),
 
-    path("", views.index,name='homepage'),
-    path("about/", views.about,name='about page'),
-    path("contact/", views.contact,name='contact page'),
-    path("tracker/", views.tracker,name='tracker page'),
-    path("search/", views.search,name='search page'),
-    path("products/<int:myid>", views.productView,name='productview page'),
-    path("checkout/", views.checkout,name='checkout page'),
 ]
